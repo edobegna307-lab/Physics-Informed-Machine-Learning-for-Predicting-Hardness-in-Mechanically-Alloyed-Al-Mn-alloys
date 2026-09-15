@@ -6,8 +6,8 @@ Data and code for: **"Limits of Composition Transferability in Small-Data Hardne
 
 | File | Description |
 |---|---|
-| `Supplementary_Data_S1_clean_dataset.csv` | The 42-specimen experimental dataset (3 alloys × 14 hot-press/anneal conditions) used for all statistical modelling in Section 3 of the manuscript. |
-| `Supplementary_Code_S1_analysis.py` | Complete, self-contained Python script that reproduces every statistic, table and figure in Section 3 from the raw dataset above, including leave-one-out cross-validation, grouped (condition- and alloy-out) cross-validation, case-resampling intervals, paired significance tests, baseline model comparisons, residual diagnostics, SHAP/permutation attribution, and the Hall–Petch-like heterogeneity test. |
+| `Supplementary_Data_S1_clean_dataset.csv` | The 42-specimen experimental dataset (3 alloys × 14 hot-press/anneal conditions) used for all statistical modelling in the manuscript. |
+| `Supplementary_Code_S1_analysis.py` | Complete, self-contained Python script that reproduces every statistic, table and figure underlying the manuscript from the raw dataset above, including leave-one-out cross-validation, grouped (condition- and alloy-out) cross-validation, case-resampling intervals, paired significance tests, baseline model comparisons, residual diagnostics, SHAP/permutation attribution, and the Hall–Petch-like heterogeneity test. Note: the short proceedings-format manuscript consolidates several of this script's outputs into a single combined table and a single combined figure for space; this script produces the fully disaggregated set (matching the longer journal-format version of the manuscript, where included in this repository).
 
 ## Requirements
 
@@ -27,7 +27,7 @@ Both files must be in the same working directory (the script reads the CSV by it
 python Supplementary_Code_S1_analysis.py
 ```
 
-This will print every reported statistic (Tables 2–9 of the manuscript) to the console and save 8 PNG figures (corresponding to Manuscript Figures 1–8) to the working directory. Runtime is a few minutes on a standard laptop CPU; no GPU is required.
+This prints every reported statistic to the console and saves 8 PNG figures to the working directory. Runtime is a few minutes on a standard laptop CPU; no GPU is required. Last verified: exit code 0, all figures generated, all printed values matching the manuscript, in a clean sandbox with only the two files above present.
 
 ## Dataset column reference
 
@@ -45,9 +45,9 @@ This will print every reported statistic (Tables 2–9 of the manuscript) to the
 | `aT` | Crystallographic lattice parameter (nm) |
 | `density` | Bulk density of the sintered compact (g/cm³), Archimedes method |
 
-## Known limitations of this dataset (see manuscript Section 5 for full discussion)
+## Known limitations of this dataset (see manuscript Section 5 / Limitations for full discussion)
 
-- Specimen-level independence (whether each row is an independently fabricated specimen, or several share a parent powder batch/compact/processing run) is not established in the records available for this analysis.
+- Each alloy was milled as a single powder batch, then divided into 14 independently hot-pressed and annealed specimens under different conditions. So specimens are independent at the pressing/annealing level, but **batch identity is perfectly confounded with alloy identity** (all 14 specimens of one alloy share one parent powder batch) and the two cannot be statistically separated with this design.
 - Individual hardness-indent values, per-specimen standard deviations, the compression-test temperature label, yield strength (σ₀.₂), and plastic deformation (ψ%) are not included in this dataset, though they were measured in the originating characterisation programme.
 - Post-hot-press annealing atmosphere and heating/cooling rate are not recorded here.
 
